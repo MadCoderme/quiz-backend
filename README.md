@@ -1,10 +1,15 @@
 ## Endpoints
 
+### Post `/quiz`
+Creates a new quiz. Body data format should follow the specified data stucture. Returns the newly created data `id` on success.
+
+### Get `/quiz`
+Returns all information about the requested quiz. Accepts a query parameter `id`
 
 ## Data Structure
 
-```
-const dbData = [
+```js
+[
     {
         id: '1',
         title: '',
@@ -24,7 +29,10 @@ const dbData = [
 ```
 
 ## Error codes
-0 - Internal Server Error
-1 - Data could not be found
-2 - Request data is badly formatted
-3 - Questions length cannot be 0
+
+| Error Code  | Description |
+| ------------- | ------------- |
+| 0  | Internal Error  |
+| 1  | Requested data could not be found  |
+| 2  | Request data is badly formatted |
+| 3  | Questions length cannot be 0 |
