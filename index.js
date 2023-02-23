@@ -49,6 +49,7 @@ client.connect(async(err) => {
                             await client.query(`INSERT INTO quizzes(title, description, questions) VALUES($1, $2, $3) RETURNING id`,
                                 [req.body.title, req.body.description, JSON.stringify(req.body.questions)])
                             data = res.rows[0]
+                            errors = null
                         } else {
                             success = false
                             errors.push(3)
@@ -74,12 +75,13 @@ client.connect(async(err) => {
                 let success = true,
                     data = null
                     errors = []
-                    
+
                 try {
                     const res = await client.query('SELECT * FROM quizzes WHERE id = $1', [req.query.id])
 
                     if(res.rowCount > 0) {
                         data = res.rows[0]
+                        errors = null
                     } else {
                         success = false
                         errors.push(1)
